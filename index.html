@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module">
+        import EncodingKEY from "./key.js"
+        const root = document.getElementById("root");
+        const key = EncodingKEY;
+        const url = `http://apis.data.go.kr/6300000/animalDaejeonService/animalDaejeonList`;
+        const keyUrl = url + `?serviceKey=${key}`
+        async function wait(){
+            const res = await fetch(keyUrl)
+            const data = await res.text()
+
+            let domparser = new DOMParser()
+            let value = domparser.parseFromString(data, "application/xml")
+            console.log(value);
+            const dataItems = value.querySelectorAll("items")
+            console.log(dataItems)
+            const dataFl = Array.from(dataItems)
+            const databo = value.querySelector("filePath").innerHTML
+            
+            root.innerHTML = `<img style = "width: 400px; height: 400px; "src="http://www.daejeon.go.kr/${databo}/>`
+        }
+        wait()
+        </script>
+</body>
+</html>
