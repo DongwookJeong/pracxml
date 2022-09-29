@@ -18,8 +18,8 @@ app.use(express.urlencoded({extended:true}))
 // body paser 선언
 app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname + "/login.html"))
-})
-// html 파일 화면 표출
+    })
+
 app.post('/', (req, res)=>{
   const sql = "insert into login set ?"
   apple.query(sql, req.body, (err, row, field) => {
@@ -30,42 +30,42 @@ app.post('/', (req, res)=>{
   })
 })
 // 정정원 제작 ^
-app.get('/board', (req, res)=>{
-    res.sendFile(__dirname + "/doit.html")
-})
-app.post('/board', (req, res)=>{
-    let body = req.body
-    let id = body.id
-    let title = body.title
-    let detail = body.detail
-    let sql = "insert into login(id, title, detail) values('1', '안녕', '안녕')"
-    apple.query(sql, function(err){
-        if(err){
-            console.log(err)
-        }
-        res.send("what")
-    })
-})
 
 // app.get('/', (req, res)=>{
-//     res.sendFile(path.join(__dirname,"login.html"))
-// })
-// html 파일 화면 표출
-
-// app.post('/', (req, res)=>{
-//     let body = req.body
-//     let id = body.id
-//     let name = body.name
-//     let pw = body.pw
-//     let sql = "insert into login(id, name, pw) values('1', 'bye', 'good')"
-//     apple.query(sql, function(err){
-//         if(err){
-//             console.log(err)
-//         }
-//         res.send("gg")
-//     })
-// })
-// 류주완 제작 ^
-app.listen(port, () => {
+    //     res.sendFile(path.join(__dirname,"login.html"))
+    // })
+    // html 파일 화면 표출
+    
+    // app.post('/', (req, res)=>{
+        //     let body = req.body
+        //     let id = body.id
+        //     let name = body.name
+        //     let pw = body.pw
+        //     let sql = "insert into login(id, name, pw) values('1', 'bye', 'good')"
+        //     apple.query(sql, function(err){
+            //         if(err){
+                //             console.log(err)
+                //         }
+                //         res.send("gg")
+                //     })
+                // })
+                // 류주완 제작 ^
+                app.get('/board', (req, res)=>{
+                    res.sendFile(__dirname + "/doit.html")
+                })
+                app.post('/board', (req, res)=>{
+                    let body = req.body
+                    let id = body.id
+                    let title = body.title
+                    let detail = body.detail
+                    let sql = "insert into login(id, title, detail) values('1', '안녕', '안녕')"
+                    apple.query(sql, function(err){
+                        if(err){
+                            console.log(err)
+                        }
+                        res.send("what")
+                    })
+                })
+                app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`)
 })
