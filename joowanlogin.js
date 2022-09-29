@@ -25,13 +25,19 @@ app.post('/', function(req, res){
     aaa.query(sql, function(err,results){
         if(err){
             console.log(err)
+            let hhh = false   
+
         }
+        results.forEach(item => {
+            if(item.id === body.id && item.name === body.name && item.pw === body.pw){
+                let hhh = true   
+            
+            }
+        });
         res.send(results)
     })
-   
 })
 
 app.listen(4444, ()=>{
     console.log("다 비켜")
 })
-console.log(results)
